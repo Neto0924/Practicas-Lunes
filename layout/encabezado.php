@@ -23,7 +23,7 @@
 
 				<li class="list-unstyled">
 					<p  class="user fondo">
-						Pablo Adrian Perez Briseño
+						Pablo Adrian Peréz Briseño
 					</p>
 				</li>
 			</ul>

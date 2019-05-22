@@ -2,11 +2,11 @@
 //se manda llamar la conexion
 include("../conexion/conexion.php");
 
-// $idCarrera    = $_POST["id_carrera"];
-$nombre   = $_POST["nombre"];
+$nombre    = $_POST["nombre"];
 $paterno   = $_POST["paterno"];
-$materno = $_POST["materno"];
-$direccion  = $_POST["direccion"];
+$materno   = $_POST["materno"];
+$direccion = $_POST["direccion"];
+$telefono  = $_POST["telefono"];
 $correo    = $_POST["correo"];
 $tipo      = $_POST["tipo"];
 $sexo      = $_POST["sexo"];

@@ -2,7 +2,7 @@
 include'../conexion/conexion.php';
 
 // Variables de configuración
-$titulo="Catálago de Alumnos";
+$titulo="Catálago de Usuarios";
 $opcionMenu="A";
 
  ?>
@@ -160,7 +160,7 @@ $opcionMenu="A";
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Editar datos Personas</h4>
+	        <h4 class="modal-title">Editar datos personas</h4>
 	      </div>
 	      <div class="modal-body">
 				<input type="hidden" id="idE">

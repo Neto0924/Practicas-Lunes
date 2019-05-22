@@ -105,12 +105,12 @@ $("#frmActuliza").submit(function(e){
     var paterno   = $("#paternoE").val();
     var materno   = $("#maternoE").val();
     var direccion = $("#direccionE").val();
-    // var sexo      = $("#sexoE").val();
-    // var telefono  = $("#telefonoE").val();
-    // var fecha_nac = $("#fecha_nacE").val();
-    // var correo    = $("#correoE").val();
-    // var tipo      = $("#tipoE").val();
-    // var ide       = $("#idE").val();
+    var sexo      = $("#sexoE").val();
+    var telefono  = $("#telefonoE").val();
+    var fecha_nac = $("#fecha_nacE").val();
+    var correo    = $("#correoE").val();
+    var tipo      = $("#tipoE").val();
+    var ide       = $("#idE").val();
 
         $.ajax({
             url:"actualizar.php",
@@ -148,9 +148,9 @@ function status(concecutivo,id){
     var nomToggle = "#interruptor"+concecutivo;
     var nomBoton  = "#boton"+concecutivo;
     var numero    = "#tConsecutivo"+concecutivo;
-    var alumno   = "#tAlumno"+concecutivo;
-    var numcontrol    = "#tNoControl"+concecutivo;
-    var carrera  = "#tCarrera"+concecutivo;
+    var nombre   = "#tNombre"+concecutivo;
+    var usuario    = "#tUsuario"+concecutivo;
+    var fecha_reg  = "#tFecha_reg"+concecutivo;
     // var sexo      = "#tSexo"+concecutivo;
 
     if( $(nomToggle).is(':checked') ) {
@@ -159,9 +159,9 @@ function status(concecutivo,id){
         alertify.success('Registro habilitado' );
         $(nomBoton).removeAttr("disabled");
         $(numero).removeClass("desabilita");
-        $(alumno).removeClass("desabilita");
-        $(numcontrol).removeClass("desabilita");
-        $(carrera).removeClass("desabilita");
+        $(nombre).removeClass("desabilita");
+        $(usuario).removeClass("desabilita");
+        $(fecha_reg).removeClass("desabilita");
         // $(sexo).removeClass("desabilita");
     }else{
         console.log("desactivado");
@@ -169,9 +169,9 @@ function status(concecutivo,id){
         alertify.error('Registro deshabilitado' );
         $(nomBoton).attr("disabled", "disabled");
         $(numero).addClass("desabilita");
-        $(alumno).addClass("desabilita");
-        $(numcontrol).addClass("desabilita");
-        $(carrera).addClass("desabilita");
+        $(nombre).addClass("desabilita");
+        $(usuario).addClass("desabilita");
+        $(fecha_reg).addClass("desabilita");
         // $(sexo).addClass("desabilita");
     }
     // console.log(concecutivo+' | '+id);
