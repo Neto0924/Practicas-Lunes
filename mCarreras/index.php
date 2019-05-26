@@ -67,16 +67,16 @@ $opcionMenu="A";
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-6">
 										<div class="form-group">
 											<label for="nombre">Nombre de la Carrera:</label>
-											<input type="text" id="nombre" class="form-control " autofocus="" required="" placeholder="Escribe el nombre">
+											<input type="text" id="nombre" class="form-control " autofocus="" required="" placeholder="Escribe el nombre de la carrera">
 										</div>
 									</div>
 									<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
 										<div class="form-group">
-											<label for="paterno">Apellido Paterno:</label>
-											<input type="text" id="paterno" class="form-control " required="" placeholder="Escribe el apellido">
+											<label for="abreviatura">Abreviatura:</label>
+											<input type="text" id="abreviatura" class="form-control " required="" placeholder="Escribe una abreviatura">
 										</div>
 									</div>
-									<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+									<!-- <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
 										<div class="form-group">
 											<label for="materno">Apellido Materno:</label>
 											<input type="text" id="materno" class="form-control " required="" placeholder="Escribe el apellido">
@@ -87,8 +87,8 @@ $opcionMenu="A";
 											<label for="direccion">Dirección:</label>
 											<input type="text" id="direccion" class="form-control " required="" placeholder="Escribe la dirección completo">
 										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+									</div> -->
+									<!-- <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 										<div class="form-group">
 											<label for="sexo">Sexo:</label>
 											<select  id="sexo" class="select2 form-control " style="width: 100%">
@@ -96,8 +96,8 @@ $opcionMenu="A";
 												<option value="F">Femenino</option>
 											</select>
 										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+									</div> -->
+									<!-- <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 										<div class="form-group">
 											<label for="Telefono">Teléfono:</label>
 											<input type="text" id="telefono" class="form-control " required="" placeholder="Escribe el telefono">
@@ -108,8 +108,8 @@ $opcionMenu="A";
 											<label for="fecha_nac">Fecha de Nacimiento:</label>
 											<input type="date" id="fecha_nac" class="form-control " required="" placeholder="yyyy-mm-dd">
 										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
+									</div> -->
+									<!-- <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
 										<div class="form-group">
 											<label for="correo">Correo:</label>
 											<input type="text" id="correo" class="form-control " required="" placeholder="email">
@@ -123,12 +123,12 @@ $opcionMenu="A";
 												<option value="trabajador">Trabajador</option>
 											</select>
 										</div>
-									</div>
-									<hr class="linea">
+									</div> -->
+									<!-- <hr class="linea"> -->
 								</div>
 								<div class="row">
 									<div class="col-lg-12">
-										<button type="button" id="btnLista" class="btn btn-login  btn-flat  pull-left">Lista de Personas</button>
+										<button type="button" id="btnLista" class="btn btn-login  btn-flat  pull-left">Lista de Carreras</button>
 										<input type="submit" class="btn btn-login  btn-flat  pull-right" value="Guardar Información">										
 									</div>
 								</div>
@@ -160,24 +160,24 @@ $opcionMenu="A";
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Editar datos personas</h4>
+	        <h4 class="modal-title">Editar datos de la Carrera</h4>
 	      </div>
 	      <div class="modal-body">
 				<input type="hidden" id="idE">
 				<div class="row">
 					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-6">
 						<div class="form-group">
-							<label for="nombreE">Nombre de la Persona:</label>
+							<label for="nombreE">Nombre de la Carrera:</label>
 							<input type="text" id="nombreE" class="form-control " autofocus="" required="" placeholder="Escribe el nombre">
 						</div>
 					</div>
 					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
 						<div class="form-group">
-							<label for="paternoE">Apellido Paterno:</label>
-							<input type="text" id="paternoE" class="form-control " required="" placeholder="Escribe el apellido">
+							<label for="abreviaturaE">Abreviatura:</label>
+							<input type="text" id="abreviaturaE" class="form-control " required="" placeholder="Escribe el apellido">
 						</div>
 					</div>
-					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+<!-- 					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
 						<div class="form-group">
 							<label for="maternoE">Apellido Materno:</label>
 							<input type="text" id="maternoE" class="form-control " required="" placeholder="Escribe el apellido">
@@ -224,7 +224,7 @@ $opcionMenu="A";
 								<option value="trabajador">Trabajador</option>
 							</select>
 						</div>
-					</div>
+					</div> -->
 					<hr class="linea">
 				</div>
 	      </div>

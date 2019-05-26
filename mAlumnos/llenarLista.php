@@ -75,16 +75,10 @@ ORDER BY alumnos.id_alumno DESC",$conexion) or die (mysql_error());
 				                        <td>
 				                          <button id="<?php echo "boton".$n; ?>" <?php echo $desabilitar ?>  type="button" class="btn btn-login btn-sm" 
 				                          onclick="abrirModalEditar(
-				                          							'<?php echo $nombre ?>',
-				                          							'<?php echo $paterno ?>',
-				                          							'<?php echo $materno ?>',
-				                          							'<?php echo $direccion ?>',
-				                          							'<?php echo $telefono ?>',
-				                          							'<?php echo $fecha_nac ?>',
-				                          							'<?php echo $correo ?>',
-																								'<?php echo $tipoPersona ?>',
-																								'<?php echo $genero ?>',
-																								'<?php echo $idPersona ?>'
+				                          							'<?php echo $nomPersona ?>',
+				                          							'<?php echo $noControl ?>',
+				                          							'<?php echo $nomCarrera ?>',
+																	'<?php echo $idAlumno ?>'
 				                          							);">
 				                          	<i class="far fa-edit"></i>
 				                          </button>

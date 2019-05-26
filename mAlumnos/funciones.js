@@ -76,18 +76,13 @@ $("#frmAlta").submit(function(e){
         return false;
 });
 
-function abrirModalEditar(nombre,paterno,materno,direccion,telefono,fecha_nac,correo,tipo,sexo,ide){
+function abrirModalEditar(alumno,noControl,carrera,ide){
    
     $("#frmActuliza")[0].reset();
-    $("#nombreE").val(nombre);
-    $("#paternoE").val(paterno);
-    $("#maternoE").val(materno);
-    $("#direccionE").val(direccion);
-    $("#telefonoE").val(telefono);
-    $("#fecha_nacE").val(fecha_nac);
-    $("#correoE").val(correo);
-    $("#tipoE").val(tipo);
-    $("#sexoE").val(sexo);
+    $("#alumnoE").val(alumno);
+    $("#matricula").val(noControl);
+    $("#idCarrera").val(carrera);
+    
     $("#idE").val(ide);
 
     $(".select2").select2();
@@ -95,37 +90,31 @@ function abrirModalEditar(nombre,paterno,materno,direccion,telefono,fecha_nac,co
     $("#modalEditar").modal("show");
 
      $('#modalEditar').on('shown.bs.modal', function () {
-         $('#nombreE').focus();
+         $('#alumnoE').focus();
      });   
 }
 
 $("#frmActuliza").submit(function(e){
   
-    var nombre    = $("#nombreE").val();
-    var paterno   = $("#paternoE").val();
-    var materno   = $("#maternoE").val();
-    var direccion = $("#direccionE").val();
+    var alumno    = $("#alumnoE").val();
+    var noControl   = $("#matricula").val();
+    var carrera   = $("#idCarrera").val();
+    // var direccion = $("#direccionE").val();
     // var sexo      = $("#sexoE").val();
     // var telefono  = $("#telefonoE").val();
     // var fecha_nac = $("#fecha_nacE").val();
     // var correo    = $("#correoE").val();
     // var tipo      = $("#tipoE").val();
-    // var ide       = $("#idE").val();
+    var ide       = $("#idE").val();
 
         $.ajax({
             url:"actualizar.php",
             type:"POST",
             dateType:"html",
             data:{
-                    'nombre':nombre,
-                    'paterno':paterno,
-                    'materno':materno,
-                    'direccion':direccion,
-                    'sexo':sexo,
-                    'telefono':telefono,
-                    'fecha_nac':fecha_nac,
-                    'correo':correo,
-                    'tipo':tipo,
+                    'alumno':alumno,
+                    'noControl':noControl,
+                    'carrera':carrera,
                     'ide':ide
                  },
             success:function(respuesta){

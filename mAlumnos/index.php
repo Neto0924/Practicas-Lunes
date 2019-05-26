@@ -1,6 +1,25 @@
 <?php 
 include'../conexion/conexion.php';
 
+//////////////////////////////////////////////////
+// Codificacion de lenguaje
+mysql_query("SET NAMES utf8");
+
+// Consulta a la base de datos
+$consulta=mysql_query("SELECT 
+alumnos.id_alumno,
+alumnos.id_carrera,
+alumnos.id_persona,
+alumnos.no_control,
+CONCAT(personas.ap_paterno,' ',personas.ap_materno,' ',personas.nombre) AS Alumno,
+(SELECT nombre FROM carreras WHERE carreras.id_carrera = alumnos.id_carrera) AS Carrera,
+alumnos.activo
+FROM 
+alumnos
+INNER JOIN personas ON personas.id_persona = alumnos.id_persona
+ORDER BY alumnos.id_alumno DESC",$conexion) or die (mysql_error());
+
+$row = mysql_fetch_array($consulta);
 // Variables de configuración
 $titulo="Catálago de Alumnos";
 $opcionMenu="A";
@@ -160,33 +179,38 @@ $opcionMenu="A";
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Editar datos Personas</h4>
+	        <h4 class="modal-title">Editar datos del Alumno</h4>
 	      </div>
 	      <div class="modal-body">
 				<input type="hidden" id="idE">
 				<div class="row">
 					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-6">
 						<div class="form-group">
-							<label for="nombreE">Nombre de la Persona:</label>
-							<input type="text" id="nombreE" class="form-control " autofocus="" required="" placeholder="Escribe el nombre">
+							<label for="alumnoE">Nombre del Alumno:</label>
+							<select id="alumnoE" class="select2 form-control" style="width: 100%">
+								<option value="<?php echo $row[2]; ?>">
+									<?php echo $row[4]; ?>
+								</option>
+							</select>
+							<!-- <input type="text" id="nombreE" class="form-control " autofocus="" required="" placeholder="Escribe el nombre"> -->
 						</div>
 					</div>
 					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
 						<div class="form-group">
-							<label for="paternoE">Apellido Paterno:</label>
-							<input type="text" id="paternoE" class="form-control " required="" placeholder="Escribe el apellido">
+							<label for="matricula">Matricula:</label>
+							<input type="text" id="matricula" class="form-control " required="" placeholder="Escribe el apellido">
 						</div>
 					</div>
-					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
-						<div class="form-group">
-							<label for="maternoE">Apellido Materno:</label>
-							<input type="text" id="maternoE" class="form-control " required="" placeholder="Escribe el apellido">
-						</div>
-					</div>
+					
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div class="form-group">
-							<label for="direccionE">Dirección:</label>
-							<input type="text" id="direccionE" class="form-control " required="" placeholder="Escribe la dirección completo">
+							<label for="idCarrera">Carrera:</label>
+							<select id="idCarrera" class="select2 form-control" style="width: 100%">
+								<option value="<?php echo $row[1]; ?>">
+									<?php echo $row[5]; ?>
+								</option>
+							</select>
+							<!-- <input type="text" id="idCarrera" class="form-control " required="" placeholder="Escribe la dirección completo"> -->
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
@@ -198,7 +222,7 @@ $opcionMenu="A";
 							</select>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+					<!-- <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 						<div class="form-group">
 							<label for="telefonoE">Teléfono:</label>
 							<input type="text" id="telefonoE" class="form-control " required="" placeholder="Escribe el telefono">
@@ -224,7 +248,7 @@ $opcionMenu="A";
 								<option value="trabajador">Trabajador</option>
 							</select>
 						</div>
-					</div>
+					</div> -->
 					<hr class="linea">
 				</div>
 	      </div>

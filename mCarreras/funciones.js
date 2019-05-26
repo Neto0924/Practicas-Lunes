@@ -36,14 +36,8 @@ $('#btnLista').on('click',function(){
 $("#frmAlta").submit(function(e){
   
     var nombre    = $("#nombre").val();
-    var paterno   = $("#paterno").val();
-    var materno   = $("#materno").val();
-    var direccion = $("#direccion").val();
-    var sexo      = $("#sexo").val();
-    var telefono  = $("#telefono").val();
-    var fecha_nac = $("#fecha_nac").val();
-    var correo    = $("#correo").val();
-    var tipo      = $("#tipo").val();
+    var abreviatura   = $("#abreviatura").val();
+
 
         $.ajax({
             url:"guardar.php",
@@ -51,14 +45,8 @@ $("#frmAlta").submit(function(e){
             dateType:"html",
             data:{
                     'nombre':nombre,
-                    'paterno':paterno,
-                    'materno':materno,
-                    'direccion':direccion,
-                    'sexo':sexo,
-                    'telefono':telefono,
-                    'fecha_nac':fecha_nac,
-                    'correo':correo,
-                    'tipo':tipo
+                    'abreviatura':abreviatura,
+                   
                  },
             success:function(respuesta){
               
@@ -76,18 +64,12 @@ $("#frmAlta").submit(function(e){
         return false;
 });
 
-function abrirModalEditar(nombre,paterno,materno,direccion,telefono,fecha_nac,correo,tipo,sexo,ide){
+function abrirModalEditar(nombre,abreviatura,ide){
    
     $("#frmActuliza")[0].reset();
     $("#nombreE").val(nombre);
-    $("#paternoE").val(paterno);
-    $("#maternoE").val(materno);
-    $("#direccionE").val(direccion);
-    $("#telefonoE").val(telefono);
-    $("#fecha_nacE").val(fecha_nac);
-    $("#correoE").val(correo);
-    $("#tipoE").val(tipo);
-    $("#sexoE").val(sexo);
+    $("#abreviaturaE").val(abreviatura);
+  
     $("#idE").val(ide);
 
     $(".select2").select2();
@@ -102,14 +84,7 @@ function abrirModalEditar(nombre,paterno,materno,direccion,telefono,fecha_nac,co
 $("#frmActuliza").submit(function(e){
   
     var nombre    = $("#nombreE").val();
-    var paterno   = $("#paternoE").val();
-    var materno   = $("#maternoE").val();
-    var direccion = $("#direccionE").val();
-    var sexo      = $("#sexoE").val();
-    var telefono  = $("#telefonoE").val();
-    var fecha_nac = $("#fecha_nacE").val();
-    var correo    = $("#correoE").val();
-    var tipo      = $("#tipoE").val();
+    var abreviatura   = $("#abreviaturaE").val();
     var ide       = $("#idE").val();
 
         $.ajax({
@@ -118,14 +93,7 @@ $("#frmActuliza").submit(function(e){
             dateType:"html",
             data:{
                     'nombre':nombre,
-                    'paterno':paterno,
-                    'materno':materno,
-                    'direccion':direccion,
-                    'sexo':sexo,
-                    'telefono':telefono,
-                    'fecha_nac':fecha_nac,
-                    'correo':correo,
-                    'tipo':tipo,
+                    'abreviatura':abreviatura,
                     'ide':ide
                  },
             success:function(respuesta){

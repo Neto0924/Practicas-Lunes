@@ -57,29 +57,12 @@ $consulta=mysql_query("SELECT
 				                          	<?php echo $abreviatura; ?>
 				                          </p>
 				                        </td>
-				                        <!-- <td>
-																<p id="<?php echo "tTelefono".$n; ?>"  class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $telefono; ?>
-				                          </p>
-				                        </td>
-				                        <td>
-																<p id="<?php echo "tSexo".$n; ?>" class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $sexo; ?>
-				                          </p>	
-																</td> -->
 				                        <td>
 				                          <button id="<?php echo "boton".$n; ?>" <?php echo $desabilitar ?>  type="button" class="btn btn-login btn-sm" 
 				                          onclick="abrirModalEditar(
-				                          							'<?php echo $nombre ?>',
-				                          							'<?php echo $paterno ?>',
-				                          							'<?php echo $materno ?>',
-				                          							'<?php echo $direccion ?>',
-				                          							'<?php echo $telefono ?>',
-				                          							'<?php echo $fecha_nac ?>',
-				                          							'<?php echo $correo ?>',
-																								'<?php echo $tipoPersona ?>',
-																								'<?php echo $genero ?>',
-																								'<?php echo $idPersona ?>'
+				                          							'<?php echo $nomCarrera ?>',
+				                          							'<?php echo $abreviatura ?>',
+																	'<?php echo $idCarrera ?>'
 				                          							);">
 				                          	<i class="far fa-edit"></i>
 				                          </button>
@@ -148,7 +131,7 @@ $consulta=mysql_query("SELECT
                               }
                           },
                          {
-                              text: 'Nueva Persona',
+                              text: 'Nueva Carrera',
                               action: function (  ) {
                                       ver_alta();
                               },
