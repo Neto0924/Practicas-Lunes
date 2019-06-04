@@ -5,21 +5,6 @@ include'../conexion/conexion.php';
 // Codificacion de lenguaje
 mysql_query("SET NAMES utf8");
 
-// Consulta a la base de datos
-$consulta=mysql_query("SELECT 
-alumnos.id_alumno,
-alumnos.id_carrera,
-alumnos.id_persona,
-alumnos.no_control,
-CONCAT(personas.ap_paterno,' ',personas.ap_materno,' ',personas.nombre) AS Alumno,
-(SELECT nombre FROM carreras WHERE carreras.id_carrera = alumnos.id_carrera) AS Carrera,
-alumnos.activo
-FROM 
-alumnos
-INNER JOIN personas ON personas.id_persona = alumnos.id_persona
-ORDER BY alumnos.id_alumno DESC",$conexion) or die (mysql_error());
-
-$row = mysql_fetch_array($consulta);
 // Variables de configuración
 $titulo="Catálago de Alumnos";
 $opcionMenu="A";
@@ -85,61 +70,24 @@ $opcionMenu="A";
 								<div class="row">
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-6">
 										<div class="form-group">
-											<label for="nombre">Nombre de la Persona:</label>
-											<input type="text" id="nombre" class="form-control " autofocus="" required="" placeholder="Escribe el nombre">
-										</div>
-									</div>
-									<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
-										<div class="form-group">
-											<label for="paterno">Apellido Paterno:</label>
-											<input type="text" id="paterno" class="form-control " required="" placeholder="Escribe el apellido">
-										</div>
-									</div>
-									<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
-										<div class="form-group">
-											<label for="materno">Apellido Materno:</label>
-											<input type="text" id="materno" class="form-control " required="" placeholder="Escribe el apellido">
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-										<div class="form-group">
-											<label for="direccion">Dirección:</label>
-											<input type="text" id="direccion" class="form-control " required="" placeholder="Escribe la dirección completo">
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-										<div class="form-group">
-											<label for="sexo">Sexo:</label>
-											<select  id="sexo" class="select2 form-control " style="width: 100%">
-												<option value="M">Masculino</option>
-												<option value="F">Femenino</option>
+											<label for="idPersona">Nombre del Alumno:</label>
+											<select name="" id="idPersona" class="form-control select2" style="width: 100%">
+																	
 											</select>
+											<!-- <input type="text" id="nombre" class="form-control " autofocus="" required="" placeholder="Escribe el nombre"> -->
 										</div>
 									</div>
-									<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+									<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
 										<div class="form-group">
-											<label for="Telefono">Teléfono:</label>
-											<input type="text" id="telefono" class="form-control " required="" placeholder="Escribe el telefono">
+											<label for="noControl">Matricula:</label>
+											<input type="text" id="noControl" class="form-control " required="" placeholder="Escribe la matricula de alumno">
 										</div>
 									</div>
-									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+									<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 										<div class="form-group">
-											<label for="fecha_nac">Fecha de Nacimiento:</label>
-											<input type="date" id="fecha_nac" class="form-control " required="" placeholder="yyyy-mm-dd">
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
-										<div class="form-group">
-											<label for="correo">Correo:</label>
-											<input type="text" id="correo" class="form-control " required="" placeholder="email">
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
-										<div class="form-group">
-											<label for="tipo">Tipo de persona:</label>
-											<select  id="tipo" class="select2 form-control " style="width: 100%">
-												<option value="estudiante">Estudiante</option>
-												<option value="trabajador">Trabajador</option>
+											<label for="idCarrera">Seleccione la Carrera:</label>
+											<select name="" id="idCarrera" class="form-control select2" style="width: 100%">
+												
 											</select>
 										</div>
 									</div>
@@ -188,32 +136,28 @@ $opcionMenu="A";
 						<div class="form-group">
 							<label for="alumnoE">Nombre del Alumno:</label>
 							<select id="alumnoE" class="select2 form-control" style="width: 100%">
-								<option value="<?php echo $row[2]; ?>">
-									<?php echo $row[4]; ?>
-								</option>
+								
 							</select>
 							<!-- <input type="text" id="nombreE" class="form-control " autofocus="" required="" placeholder="Escribe el nombre"> -->
 						</div>
 					</div>
 					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
 						<div class="form-group">
-							<label for="matricula">Matricula:</label>
-							<input type="text" id="matricula" class="form-control " required="" placeholder="Escribe el apellido">
+							<label for="matriculaE">Matricula:</label>
+							<input type="text" id="matriculaE" class="form-control " required="" placeholder="Escribe el apellido">
 						</div>
 					</div>
 					
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div class="form-group">
-							<label for="idCarrera">Carrera:</label>
-							<select id="idCarrera" class="select2 form-control" style="width: 100%">
-								<option value="<?php echo $row[1]; ?>">
-									<?php echo $row[5]; ?>
-								</option>
+							<label for="idCarreraE">Carrera:</label>
+							<select id="idCarreraE" class="select2 form-control" style="width: 100%">
+								
 							</select>
 							<!-- <input type="text" id="idCarrera" class="form-control " required="" placeholder="Escribe la dirección completo"> -->
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+					<!-- <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 						<div class="form-group">
 							<label for="sexoE">Sexo:</label>
 							<select  id="sexoE" class="select2 form-control " style="width: 100%">
@@ -221,7 +165,7 @@ $opcionMenu="A";
 								<option value="F">Femenino</option>
 							</select>
 						</div>
-					</div>
+					</div> -->
 					<!-- <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 						<div class="form-group">
 							<label for="telefonoE">Teléfono:</label>
@@ -249,7 +193,7 @@ $opcionMenu="A";
 							</select>
 						</div>
 					</div> -->
-					<hr class="linea">
+					<!-- <hr class="linea"> -->
 				</div>
 	      </div>
 	      <div class="modal-footer">

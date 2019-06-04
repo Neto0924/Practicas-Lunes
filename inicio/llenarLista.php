@@ -1,6 +1,6 @@
 <?php 
 // Conexion a la base de datos
-include '../conexion/conexion.php';
+include'../conexion/conexion.php';
 
 // Codificacion de lenguaje
 mysql_query("SET NAMES utf8");
@@ -8,8 +8,8 @@ mysql_query("SET NAMES utf8");
 // Consulta a la base de datos
 $consulta=mysql_query("SELECT 
 alumnos.id_alumno,
-alumnos.id_persona,
 alumnos.id_carrera,
+alumnos.id_persona,
 alumnos.no_control,
 CONCAT(personas.ap_paterno,' ',personas.ap_materno,' ',personas.nombre) AS Alumno,
 (SELECT nombre FROM carreras WHERE carreras.id_carrera = alumnos.id_carrera) AS Carrera,
@@ -17,8 +17,8 @@ alumnos.activo
 FROM 
 alumnos
 INNER JOIN personas ON personas.id_persona = alumnos.id_persona
-ORDER BY alumnos.id_alumno ASC",$conexion) or die (mysql_error());
-//$row=mysql_fetch_row($consulta)
+ORDER BY alumnos.id_alumno DESC",$conexion) or die (mysql_error());
+// $row=mysql_fetch_row($consulta)
  ?>
 				            <div class="table-responsive">
 				                <table id="example1" class="table table-responsive table-condensed table-bordered table-striped">
@@ -39,8 +39,8 @@ ORDER BY alumnos.id_alumno ASC",$conexion) or die (mysql_error());
 				                    $n=1;
 				                    while ($row=mysql_fetch_row($consulta)) {
 										$idAlumno   = $row[0];
-										$idPersona = $row[1];
-										$idCarrera  = $row[2];
+										$idCarrera  = $row[1];
+										$nomPersona = $row[2];
 										$noControl  = $row[3];
 										$nomAlumno  = $row[4];
 										$nomCarrera = $row[5];
@@ -75,10 +75,10 @@ ORDER BY alumnos.id_alumno ASC",$conexion) or die (mysql_error());
 				                        <td>
 				                          <button id="<?php echo "boton".$n; ?>" <?php echo $desabilitar ?>  type="button" class="btn btn-login btn-sm" 
 				                          onclick="abrirModalEditar(
-																	'<?php echo $idPersona?>',
-				                          							'<?php echo $idPersona?>',
-				                          							'<?php echo $nomCarrera?>',
-				                          							'<?php echo $noControl?>'
+				                          							'<?php echo $nomPersona ?>',
+				                          							'<?php echo $noControl ?>',
+				                          							'<?php echo $idCarrera ?>',
+																								'<?php echo $idAlumno ?>'
 				                          							);">
 				                          	<i class="far fa-edit"></i>
 				                          </button>
@@ -149,9 +149,6 @@ ORDER BY alumnos.id_alumno ASC",$conexion) or die (mysql_error());
                               text: 'Nuevo Alumno',
                               action: function (  ) {
                                       ver_alta();
-                                      llenar_carrera();
-                                      llenar_persona();
-
                               },
                               counter: 1
                           },
