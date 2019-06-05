@@ -135,7 +135,7 @@ $opcionMenu="A";
 					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-6">
 						<div class="form-group">
 							<label for="alumnoE">Nombre del Alumno:</label>
-							<select id="alumnoE" class="select2 form-control" style="width: 100%">
+							<select id="alumnoE" class="select2 form-control" style="width: 100%" disabled>
 								
 							</select>
 							<!-- <input type="text" id="nombreE" class="form-control " autofocus="" required="" placeholder="Escribe el nombre"> -->
@@ -144,7 +144,7 @@ $opcionMenu="A";
 					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
 						<div class="form-group">
 							<label for="matriculaE">Matricula:</label>
-							<input type="text" id="matriculaE" class="form-control " required="" placeholder="Escribe el apellido">
+							<input type="text" id="matriculaE" class="form-control " required="">
 						</div>
 					</div>
 					

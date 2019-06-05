@@ -7,17 +7,17 @@ mysql_query("SET NAMES utf8");
 
 // Consulta a la base de datos
 $consulta=mysql_query("SELECT 
-alumnos.id_alumno,
-alumnos.id_persona,
-alumnos.id_carrera,
-alumnos.no_control,
-CONCAT(personas.ap_paterno,' ',personas.ap_materno,' ',personas.nombre) AS Alumno,
-(SELECT nombre FROM carreras WHERE carreras.id_carrera = alumnos.id_carrera) AS Carrera,
-alumnos.activo
-FROM 
-alumnos
-INNER JOIN personas ON personas.id_persona = alumnos.id_persona
-ORDER BY alumnos.id_alumno ASC",$conexion) or die (mysql_error());
+					   id_alumno,
+					   id_persona,
+					   id_carrera,
+					   no_control,
+					   activo,
+					   (SELECT personas.nombre FROM personas WHERE personas.id_persona=alumnos.id_persona) AS nAlumno,
+					   (SELECT personas.ap_paterno FROM personas WHERE personas.id_persona=alumnos.id_persona) AS pAlumno,
+					   (SELECT personas.ap_materno FROM personas WHERE personas.id_persona=alumnos.id_persona) AS mAlumno,
+					   (SELECT carreras.nombre FROM carreras WHERE carreras.id_carrera=alumnos.id_carrera) AS Carrera,
+					   fecha_registro
+					   FROM alumnos",$conexion) or die (mysql_error());
 //$row=mysql_fetch_row($consulta)
  ?>
 				            <div class="table-responsive">
@@ -38,17 +38,17 @@ ORDER BY alumnos.id_alumno ASC",$conexion) or die (mysql_error());
 				                    <?php 
 				                    $n=1;
 				                    while ($row=mysql_fetch_row($consulta)) {
-										$idAlumno   = $row[0];
-										$idPersona = $row[1];
-										$idCarrera  = $row[2];
-										$noControl  = $row[3];
-										$nomAlumno  = $row[4];
-										$nomCarrera = $row[5];
-										$activo  = 		$row[6];			
-										$sexo=($sexo=='M')?'<i class="fas fa-male fa-lg"></i>':'<i class="fas fa-female fa-lg"></i>';
-										$checado=($activo==1)?'checked':'';		
-										$desabilitar=($activo==0)?'disabled':'';
-										$claseDesabilita=($activo==0)?'desabilita':'';
+															$idAlumno          = $row[0];
+															$nomCarrera        = $row[8];
+															$activo            = $row[4];
+															$nomAlumnoCompleto = $row[6].' '.$row[7].' '.$row[5];
+															$idPersona         = $row[1];
+															$idCarrera         = $row[2]; 
+															$noControl         = $row[3];
+															$registro          = $row[9];
+															$checado           = ($activo == 1)?'checked' : '';		
+															$desabilitar       = ($activo == 0)?'disabled': '';
+															$claseDesabilita   = ($activo == 0)?'desabilita':'';
 															?>
 				                      <tr>
 				                        <td >
@@ -58,7 +58,7 @@ ORDER BY alumnos.id_alumno ASC",$conexion) or die (mysql_error());
 				                        </td>
 				                        <td>
 																<p id="<?php echo "tAlumno".$n; ?>" class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $nomAlumno; ?>
+				                          	<?php echo $nomAlumnoCompleto; ?>
 				                          </p>
 				                        </td>
 				                        <td>
@@ -75,10 +75,10 @@ ORDER BY alumnos.id_alumno ASC",$conexion) or die (mysql_error());
 				                        <td>
 				                          <button id="<?php echo "boton".$n; ?>" <?php echo $desabilitar ?>  type="button" class="btn btn-login btn-sm" 
 				                          onclick="abrirModalEditar(
-																	'<?php echo $idPersona?>',
-				                          							'<?php echo $idPersona?>',
-				                          							'<?php echo $nomCarrera?>',
-				                          							'<?php echo $noControl?>'
+																								'<?php echo $idAlumno ?>',
+				                          							'<?php echo $idPersona ?>',
+				                          							'<?php echo $idCarrera ?>',
+				                          							'<?php echo $noControl ?>'
 				                          							);">
 				                          	<i class="far fa-edit"></i>
 				                          </button>

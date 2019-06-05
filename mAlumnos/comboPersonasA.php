@@ -9,13 +9,15 @@
 								FROM alumnos
 								INNER JOIN personas ON alumnos.id_persona = personas.id_persona
 								WHERE personas.activo = 1",$conexion)or die(mysql_error());
- ?>
- <option value="0">Selecionar... </option>
+  ?>
+  <option value="0">Seleccione...</option>
+<?php 
+
+while ($row=mysql_fetch_row($consulta))
+{
+ ?>	
+	 <option value="<?php echo $row[0]; ?>"> <?php echo $row[1]; ?></option>
  <?php 
- 	while ($row=mysql_fetch_row($consulta))
- 	 {
- 		?>
- 			<option value=" <?php echo $row[0]; ?> "> <?php echo $row[1]; ?> </option>
- 		<?php  
- }
- ?>
+}
+
+?> 
