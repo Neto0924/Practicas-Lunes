@@ -2,6 +2,125 @@ function entrando(){
     window.location='../inicio/index.php';
 }
 
+function verRegistros(matricula){
+    // llenar_matricula();
+    $("#cuerpo").hide();
+    $("#registros").show();
+    $("#cambiarContra").hide();
+    var pass = $("#matricula").val();
+    
+    $("#noControl").focus();
+    
+
+    $("#frmAcceso").submit(function(e){
+        var matricula,pass,persona,regcarrera;
+        matricula = $("#noControl").val();
+        pass = $("#matricula").val();
+        persona = $("#alumno").val();
+        regcarrera = $("#regcarrera").val();
+
+
+
+        if (matricula == pass) {
+             $("#persona").val(pass);
+             $("#nomCarrera").val(regcarrera);
+             $("#persona").val(persona);
+
+        }
+        else{
+            alertify.warning("Hubo un error");
+        }
+
+        // var matricula=matricula.trim();
+        
+        // contra=contra.trim();
+        // if(matricula == ''){
+        //     alertify.dialog('alert').set({transition:'zoom',message: 'Transition effect: zoom'}).show();
+    
+        //     alertify.alert()
+        //     .setting({
+        //         'title':'Acceso denegado',
+        //         'label':'Aceptar',
+        //         'message': 'Debes de colocar una matricula para acceder!' ,
+        //         'onok': function(){ 
+        //             alertify.message('Gracias !');
+        //             $("#noControl").val('');
+        //             $("#noControl").focus();
+        //         }
+        //     }).show();
+        //     return false;    
+        // }
+        // if(matricula != pass){
+        //     alertify.dialog('alert').set({transition:'zoom',message: 'Transition effect: zoom'}).show();
+    
+        //     alertify.alert()
+        //     .setting({
+        //         'title':'Acceso denegado',
+        //         'label':'Aceptar',
+        //         'message': 'La matricula no coincide con una existente' ,
+        //         'onok': function(){ 
+        //             alertify.message('Gracias !');
+        //             $("#noControl").val('');
+        //             $("#noControl").focus();
+        //         }
+        //     }).show();
+        //     return false;    
+        // }
+        // else{
+        //     $.ajax({
+        //         url:"validarMatricula.php",
+        //         type:"POST",
+        //         dateType:"html",
+        //         success:function(respuesta){
+        //           console.log(respuesta);
+        //           respuesta=parseInt(respuesta);
+        //           switch(respuesta){
+        //               case 0 :
+        //                     alertify.dialog('alert').set({transition:'zoom',message: 'Transition effect: zoom'}).show();
+    
+        //                     alertify.alert()
+        //                     .setting({
+        //                         'title':'Acceso denegado',
+        //                         'label':'Aceptar',
+        //                         'message': 'Nombre de usuario o contraseña incorrectos' ,
+        //                         'onok': function(){ 
+        //                             alertify.message('Gracias !');
+        //                             $("#username").val('');
+    
+        //                         }
+        //                     }).show();   
+        //                 break;
+        //               case 1 :
+        //                     var valorChk=$('#chkContra').val();
+        //                     if(valorChk=='si'){
+        //                         cambioContra();
+        //                         $("#usuario").val(usuario);                       
+        //                     }else{
+        //                         alertify.success('Ingresando....') ; 
+        //                         preCarga(2000,2);
+        //                         setInterval(entrando, 2000);
+        //                 }
+        //                 break;
+        //               case 2 :
+        //                     cambioContra();
+        //                     $("#usuario").val(usuario);
+    
+        //                 break;
+        //           }
+    
+        //         },
+        //         error:function(xhr,status){
+        //             alert(xhr);
+        //         },
+        //     });
+        // } 
+            e.preventDefault();
+            return false;
+    });
+    
+}
+
+
 function cambioContra(){
 
     $("#cuerpo").hide();
@@ -204,4 +323,22 @@ function cancelar(){
                     alertify.error('Cancelar') ; 
                     console.log('cancelado')}
         ).set('labels',{ok:'Si',cancel:'No'});
+}
+
+
+
+function llenar_matricula(matricula){
+    $.ajax({
+        url: 'validarMatricula.php',
+        data : {'noControl':noControl},
+        type : 'POST',
+        dateType : 'html',
+        success : function(respuesta){
+            console.log(respuesta);
+            $("#matricula").val(respuesta);
+        },
+        error : function(xhr, status){
+            alert('Disculpe, hubo un problema');
+        },
+    });
 }

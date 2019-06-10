@@ -49,7 +49,7 @@ $opcionMenu="A";
 		 ?>
 	</header><!-- /header -->	
 	<div class="container-fluid" >
-		<div class="row">
+	<div class="row" id="cuerpo" style="display:none">
 			<div class="col-xs-0 col-sm-3 col-md-2 col-lg-2 vertical">
 			<?php 
 				include('menuv.php');
@@ -64,78 +64,44 @@ $opcionMenu="A";
 				        <section id="alta" style="display: none">
             				<form id="frmAlta">
 								<div class="row">
-									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-6">
+									<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 										<div class="form-group">
-											<label for="nombre">Nombre de la Persona:</label>
-											<input type="text" id="nombre" class="form-control " autofocus="" required="" placeholder="Escribe el nombre">
-										</div>
-									</div>
-									<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
-										<div class="form-group">
-											<label for="paterno">Apellido Paterno:</label>
-											<input type="text" id="paterno" class="form-control " required="" placeholder="Escribe el apellido">
-										</div>
-									</div>
-									<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
-										<div class="form-group">
-											<label for="materno">Apellido Materno:</label>
-											<input type="text" id="materno" class="form-control " required="" placeholder="Escribe el apellido">
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-										<div class="form-group">
-											<label for="direccion">Dirección:</label>
-											<input type="text" id="direccion" class="form-control " required="" placeholder="Escribe la dirección completo">
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-										<div class="form-group">
-											<label for="sexo">Sexo:</label>
-											<select  id="sexo" class="select2 form-control " style="width: 100%">
-												<option value="M">Masculino</option>
-												<option value="F">Femenino</option>
+											<label for="idPersona">Seleccione a la persona:</label>
+											<select  id="idPersona" class="select2 form-control " style="width: 100%">
 											</select>
 										</div>
 									</div>
-									<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+									<div class="col-xs-6 col-sm-5 col-md-5 col-lg-5">
 										<div class="form-group">
-											<label for="Telefono">Teléfono:</label>
-											<input type="text" id="telefono" class="form-control " required="" placeholder="Escribe el telefono">
+											<label for="usuario">Usuario:</label>
+											<input type="text" id="usuario" class="form-control " required="" placeholder="Escribe el usuario">
 										</div>
 									</div>
-									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<div class="form-group">
-											<label for="fecha_nac">Fecha de Nacimiento:</label>
-											<input type="date" id="fecha_nac" class="form-control " required="" placeholder="yyyy-mm-dd">
+											<label for="contra">Contraseña:</label>
+											<input type="password" id="contra" class="form-control " required="" placeholder="Escribe la contraseña">
 										</div>
 									</div>
-									<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
+									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<div class="form-group">
-											<label for="correo">Correo:</label>
-											<input type="text" id="correo" class="form-control " required="" placeholder="email">
+											<label for="vContra">Verificar contraseña:</label>
+											<input type="password" id="vContra" class="form-control " required="" placeholder="Vuelva a escribir la contraseña">
 										</div>
 									</div>
-									<div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
-										<div class="form-group">
-											<label for="tipo">Tipo de persona:</label>
-											<select  id="tipo" class="select2 form-control " style="width: 100%">
-												<option value="estudiante">Estudiante</option>
-												<option value="trabajador">Trabajador</option>
-											</select>
-										</div>
-									</div>
+
 									<hr class="linea">
 								</div>
 								<div class="row">
 									<div class="col-lg-12">
-										<button type="button" id="btnLista" class="btn btn-login  btn-flat  pull-left">Lista de Personas</button>
+										<button type="button" id="btnLista" class="btn btn-login  btn-flat  pull-left">Lista de Usuarios</button>
 										<input type="submit" class="btn btn-login  btn-flat  pull-right" value="Guardar Información">										
 									</div>
 								</div>
             				</form>
 				        </section>
 
-				        <section id="lista" style="width: 100%">
+				        <section id="lista">
             
 				        </section>
 				    </div>
@@ -153,7 +119,7 @@ $opcionMenu="A";
 
 	<!-- Modal -->
 	<div id="modalEditar" class="modal fade" role="dialog">
-	  <div class="modal-dialog modal-lg">
+	  <div class="modal-dialog modal-md">
 
 	    <!-- Modal content-->
 	    <form id="frmActuliza">
@@ -165,64 +131,29 @@ $opcionMenu="A";
 	      <div class="modal-body">
 				<input type="hidden" id="idE">
 				<div class="row">
-					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-6">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
 						<div class="form-group">
-							<label for="nombreE">Nombre de la Persona:</label>
-							<input type="text" id="nombreE" class="form-control " autofocus="" required="" placeholder="Escribe el nombre">
-						</div>
-					</div>
-					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
-						<div class="form-group">
-							<label for="paternoE">Apellido Paterno:</label>
-							<input type="text" id="paternoE" class="form-control " required="" placeholder="Escribe el apellido">
-						</div>
-					</div>
-					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
-						<div class="form-group">
-							<label for="maternoE">Apellido Materno:</label>
-							<input type="text" id="maternoE" class="form-control " required="" placeholder="Escribe el apellido">
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<div class="form-group">
-							<label for="direccionE">Dirección:</label>
-							<input type="text" id="direccionE" class="form-control " required="" placeholder="Escribe la dirección completo">
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-						<div class="form-group">
-							<label for="sexoE">Sexo:</label>
-							<select  id="sexoE" class="select2 form-control " style="width: 100%">
-								<option value="M">Masculino</option>
-								<option value="F">Femenino</option>
+							<label for="nombreE">Nombre del usuario:</label>
+							<select  id="nombreE" class="select2 form-control " style="width: 100%" disabled>
 							</select>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-5">
 						<div class="form-group">
-							<label for="telefonoE">Teléfono:</label>
-							<input type="text" id="telefonoE" class="form-control " required="" placeholder="Escribe el telefono">
+							<label for="usuarioE">Usuario:</label>
+							<input type="text" id="usuarioE" class="form-control " required="" placeholder="Escribe el nombre de usuario">
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 						<div class="form-group">
-							<label for="fecha_nacE">Fecha de Nacimiento:</label>
-							<input type="date" id="fecha_nacE" class="form-control " required="" placeholder="yyyy-mm-dd">
+							<label for="contraE">Contraseña:</label>
+							<input type="password" id="contraE" class="form-control " required="" placeholder="Escribe la contraseña">
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 						<div class="form-group">
-							<label for="correoE">Correo:</label>
-							<input type="text" id="correoE" class="form-control " required="" placeholder="email">
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
-						<div class="form-group">
-							<label for="tipoE">Tipo de persona:</label>
-							<select  id="tipoE" class="select2 form-control " style="width: 100%">
-								<option value="estudiante">Estudiante</option>
-								<option value="trabajador">Trabajador</option>
-							</select>
+							<label for="vContraE">Verificar Contraseña:</label>
+							<input type="password" id="vContraE" class="form-control " required="" placeholder="Vuelve a esrcribir la contraseña">
 						</div>
 					</div>
 					<hr class="linea">
@@ -232,6 +163,9 @@ $opcionMenu="A";
 				<div class="row">
 					<div class="col-lg-12">
 						<button type="button" id="btnCerrar" class="btn btn-login  btn-flat  pull-left" data-dismiss="modal">Cerrar</button>
+						<button type="button" id="btnMostrar" class="btn btn-login  btn-flat  pull-left" onclick="mostrarContra()" value="oculto">
+						<i class="far fa-eye fa-lg" id="icoMostrar"></i>
+						</button>
 						<input type="submit" class="btn btn-login  btn-flat  pull-right" value="Actualizar Información">	
 					</div>
 				</div>
@@ -281,12 +215,13 @@ $opcionMenu="A";
     <script src="funciones.js"></script>
     <script src="../js/menu.js"></script>
     <script src="../js/precarga.js"></script>
+		<script src="../js/salir.js"></script>
 
     <!-- LLAMADAS A FUNCIONES E INICIALIZACION DE COMPONENTES -->
 
     <!-- Llamar la funcion para llenar la lista -->
 	<script type="text/javascript">
-	  llenar_lista();
+		llenar_lista();
 	</script>
 
     <!-- Inicializador de elemento -->
@@ -303,5 +238,10 @@ $opcionMenu="A";
 	</script>
 
 	<script type="text/javascript" src="../plugins/stacktable/stacktable.js"></script> 
+	<script>
+		window.onload = function() {
+			$("#cuerpo").fadeIn("slow");
+		};	
+	</script>
 </body>
 </html>

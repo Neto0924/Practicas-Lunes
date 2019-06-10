@@ -6,15 +6,18 @@ include'../conexion/conexion.php';
 mysql_query("SET NAMES utf8");
 
 // Consulta a la base de datos
-$consulta=mysql_query("SELECT 
-usuarios.id_usuario,
-CONCAT (personas.nombre,' ',personas.ap_paterno,' ',personas.ap_materno),
-usuarios.usuario,
-usuarios.fecha_registro,
-usuarios.activo
-FROM usuarios
-INNER JOIN personas ON personas.id_persona = usuarios.id_persona
-ORDER BY usuarios.id_usuario DESC",$conexion) or die (mysql_error());
+$consulta=mysql_query("SELECT
+												id_usuario,
+												id_persona,
+												usuario,
+												activo,
+												(SELECT personas.nombre FROM personas WHERE personas.id_persona=usuarios.id_persona) AS nUsuario,
+												(SELECT personas.ap_paterno FROM personas WHERE personas.id_persona=usuarios.id_persona) AS pUsuario,
+												(SELECT personas.ap_materno FROM personas WHERE personas.id_persona=usuarios.id_persona) AS mUsuario,
+												fecha_registro,
+												contra
+												FROM
+												usuarios",$conexion) or die (mysql_error());
 // $row=mysql_fetch_row($consulta)
  ?>
 				            <div class="table-responsive">
@@ -25,10 +28,10 @@ ORDER BY usuarios.id_usuario DESC",$conexion) or die (mysql_error());
 				                        <th>#</th>
 				                        <th>Nombre</th>
 				                        <th>Usuario</th>
-				                        <th>Fecha Resgitro</th>
+				                        <th>Registro</th>
+																<th>Restaurar</th>
 				                        <th>Editar</th>
-																<th>Restablecer</th>
-				                        <th>Estatus</th>
+																<th>Estatus</th>
 				                      </tr>
 				                    </thead>
 
@@ -36,15 +39,17 @@ ORDER BY usuarios.id_usuario DESC",$conexion) or die (mysql_error());
 				                    <?php 
 				                    $n=1;
 				                    while ($row=mysql_fetch_row($consulta)) {
-										$idUsuario   = $row[0];
-										$nombre  = $row[1];
-										$usuario = $row[2];
-										$fecha_reg  = $row[3];
-										$activo  = 		$row[4];			
-										// $sexo=($sexo=='M')?'<i class="fas fa-male fa-lg"></i>':'<i class="fas fa-female fa-lg"></i>';
-										$checado=($activo==1)?'checked':'';		
-										$desabilitar=($activo==0)?'disabled':'';
-										$claseDesabilita=($activo==0)?'desabilita':'';
+										$idUsuario          = $row[0];
+										$activo             = $row[3];
+										$nomUsuarioCompleto = $row[5].' '.$row[6].' '.$row[4];
+										$idPersona          = $row[1];
+										$usuario            = $row[2];
+										$registro           = $row[7];
+										$contra             = $row[8];
+
+										$checado         = ($activo == 1)?'checked' : '';		
+										$desabilitar     = ($activo == 0)?'disabled': '';
+										$claseDesabilita = ($activo == 0)?'desabilita':'';
 															?>
 				                      <tr>
 				                        <td >
@@ -53,8 +58,8 @@ ORDER BY usuarios.id_usuario DESC",$conexion) or die (mysql_error());
 				                          </p>
 				                        </td>
 				                        <td>
-																<p id="<?php echo "tNombre".$n; ?>" class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $nombre; ?>
+																<p id="<?php echo "tNcompleto".$n; ?>" class="<?php echo $claseDesabilita; ?>">
+				                          	<?php echo $nomUsuarioCompleto; ?>
 				                          </p>
 				                        </td>
 				                        <td>
@@ -63,34 +68,29 @@ ORDER BY usuarios.id_usuario DESC",$conexion) or die (mysql_error());
 				                          </p>
 				                        </td>
 				                        <td>
-																<p id="<?php echo "tFecha_reg".$n; ?>"  class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $fecha_reg; ?>
+																<p id="<?php echo "tRegistro".$n; ?>"  class="<?php echo $claseDesabilita; ?>">
+				                          	<?php echo $registro; ?>
 				                          </p>
+				                        </td>	
+				                        <td>
+				                          <button id="<?php echo "botonR".$n; ?>" <?php echo $desabilitar ?>  type="button" class="btn btn-login btn-sm" 
+				                          onclick="restaurarContra(
+				                          							'<?php echo $idUsuario ?>'
+				                          							);">
+				                          	<i class="fas fa-sync-alt"></i>
+				                          </button>
 				                        </td>
-				                       
 				                        <td>
 				                          <button id="<?php echo "boton".$n; ?>" <?php echo $desabilitar ?>  type="button" class="btn btn-login btn-sm" 
 				                          onclick="abrirModalEditar(
-				                          							'<?php echo $persona ?>',
-				                          							'<?php echo $ap_paterno ?>',
-				                          							'<?php echo $ap_materno ?>',
-				                          							'<?php echo $direccion ?>',
-				                          							'<?php echo $telefono ?>',
-				                          							'<?php echo $fecha_nac ?>',
-				                          							'<?php echo $correo ?>',
-																								'<?php echo $tipoPersona ?>',
-																								'<?php echo $genero ?>',
-																								'<?php echo $idPersona ?>'
+				                          							'<?php echo $idUsuario  ?>',
+				                          							'<?php echo $idPersona ?>',
+				                          							'<?php echo $usuario ?>',
+				                          							'<?php echo $contra ?>'
 				                          							);">
-				                          	<i class="fa fa-edit"></i>
+				                          	<i class="far fa-edit"></i>
 				                          </button>
 				                        </td>
-																<td>
-																	<button type="button" class="btn btn-login btn-sm">
-																			<i class="fa fa-sync-alt"></i>
-																	</button>
-																
-																</td>
 				                        <td>
 											<input  data-size="small" data-style="android" value="<?php echo "$valor"; ?>" type="checkbox" <?php echo "$checado"; ?>  id="<?php echo "interruptor".$n; ?>"  data-toggle="toggle" data-on="Desactivar" data-off="Activar" data-onstyle="danger" data-offstyle="success" class="interruptor" data-width="100" onchange="status(<?php echo $n; ?>,<?php echo $idUsuario; ?>);">
 				                        </td>
@@ -104,13 +104,13 @@ ORDER BY usuarios.id_usuario DESC",$conexion) or die (mysql_error());
 
 				                    <tfoot align="center">
 				                      <tr class="info">
-																<th>#</th>
+															<th>#</th>
 				                        <th>Nombre</th>
 				                        <th>Usuario</th>
-				                        <th>Fecha Resgitro</th>
+				                        <th>Registro</th>
+																<th>Restaurar</th>
 				                        <th>Editar</th>
-																<th>Restablecer</th>
-				                        <th>Estatus</th>
+																<th>Estatus</th>
 				                      </tr>
 				                    </tfoot>
 				                </table>
@@ -155,9 +155,10 @@ ORDER BY usuarios.id_usuario DESC",$conexion) or die (mysql_error());
                               }
                           },
                          {
-                              text: 'Nuevo Alumno',
+                              text: 'Nuevo Usuario',
                               action: function (  ) {
-                                      ver_alta();
+																			ver_alta();
+																			llenar_persona();
                               },
                               counter: 1
                           },

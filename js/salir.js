@@ -1,18 +1,21 @@
 function salir(){
-    //Formulario llenado al 100%
-    alertify.confirm('Salir del Sistema','Estas apunto de salir del sistema \n ¿Estas seguro de realizar esta acción?' , function()
-        { 
-          alertify.alert()
-            .setting({
-              'title':'Felicidades !!',
-              'label':'Salir',
-              'message': 'Se ha enviado un correo al administrador del sistema SYSACAD , notificando que has registrado la información ,estos datos servirán para generar tu usuario al sistema académico. Una vez procesados los datos se enviaran las credenciales a tu correo intitucional '+correo ,
-              'onok': function(){ alertify.message('Gracias !'); final();  verInicio(); preCarga(1000)}
-            }).show();
-        }, 
-        function()
-        { 
-            alertify.warning('Se ha cancelado la acción')
-        }
-    );
+    // console.log("Saliendo del sistema...")
+    alertify.confirm('alert').set({transition:'zoom',message: 'Transition effect: zoom'}).show();
+    alertify.confirm(
+        'Sistema de Registro de Alumnos', 
+        '¿Deseas salir del Sistema?', 
+        function(){ 
+                alertify.success('Saliendo....') ; 
+                preCarga(2000,2);
+                setInterval(salida, 2000);
+            }, 
+        function(){ 
+                alertify.error('Cancelar') ; 
+                console.log('cancelado')}
+    ).set('labels',{ok:'Salir',cancel:'Cancelar'});
+
+}
+
+function salida(){
+    window.location='../sesiones/cerrarsesion.php';
 }

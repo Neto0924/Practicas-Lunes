@@ -7,23 +7,22 @@
 				</li>
 				<li class="list-unstyled">
 					<a href="#" class="color borde">
-						<i class="fas fa-question-circle"></i>
-					</a>
-				</li>
-				<li class="list-unstyled">
-					<a href="#" class="color borde">
 						<i class="far fa-user-circle"></i>
 					</a>
 				</li>
 				<li class="list-unstyled">
-					<a href="#" onclick="salir();" class="color borde">
-						<i class="fas fa-power-off"></i>
+					<a href="#" class="color borde">
+						<i class="fas fa-unlock-alt"></i>
 					</a>
 				</li>
-
+				<li class="list-unstyled">
+					<a href="#" onclick="salir();" class="color borde">
+						<i class="fas fa-sign-out-alt"></i>
+					</a>
+				</li>
 				<li class="list-unstyled">
 					<p  class="user fondo">
-						Ernesto Alejandro Mejorado Herrera
+						Pablo Adrian Perez Briseño
 					</p>
 				</li>
 			</ul>
