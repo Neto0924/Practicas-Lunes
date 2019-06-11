@@ -1,4 +1,4 @@
-
+ 
 				<div class="sidebar fondo borde fuenteAzul sombra" >
 					<h2 class="fondo">Alumnos</h2>
 					<ul>
@@ -18,7 +18,7 @@
 							</a>
 						</li >
 						<li class="list-unstyled" class="menuInicio">
-							<a href="../inicio/index.php" id="mnuC">
+							<a href="#" onclick="salir();" id="mnuC">
 								<i class="fas fa-power-off"></i> Salir 
 							</a>
 						</li >

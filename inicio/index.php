@@ -49,7 +49,7 @@
 	<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
 	<script src="../plugins/alertifyjs/alertify.js"></script>
 	<script type="text/javascript">
-	  // llenar_lista();
+	 
 	</script>
 </body>
 </html>

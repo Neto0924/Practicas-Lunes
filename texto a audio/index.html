@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+ 	<meta name="viewport" content="width=device-width"> 
+	<title>JS Bin</title> 
+</head> 
+<body> 
+
+	<input type="text" name="text" id="texto"> 
+
+ 	<a href="#" class="say" onclick="hablar();">Escuchar Texto!</a> 
+ 	<audio src="" hidden class=speech></audio> 
+
+	<script src="jquery-1.12.1.js"></script> 
+	<script src="responsivevoice.js"></script> 	
+
+ 	<script> 
+ 	// $("a.say").on('click', function(e){ e.preventDefault(); 
+ 	// 	var text = $("input[name=text]").val(); 
+ 	// 	responsiveVoice.speak(text,"Spanish Female"); 
+ 		// text=encodeURIComponent(text); var url="https://audio1.spanishdict.com/audio?lang=es&text=﻿" ;
+ 	// }) 
+
+ 	function hablar(){
+ 		var textoAtraducir;
+ 		textoAtraducir=$("#texto").val(); 
+ 		responsiveVoice.speak(textoAtraducir,"Spanish Female"); 
+ 		// alert(textoAtraducir);
+ 	}
+ 	</script>
+	
+</body>
+</html>

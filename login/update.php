@@ -16,31 +16,11 @@ $hora=date ("H:i:s");
 	mysql_query('SET NAMES utf8');
 
 
-
-
-
-
-
 	$cadena_actualizar = mysql_query("UPDATE usuarios SET 
 									contra = '$passMD5', 
 									id_registro = '1', 
 									fecha_registro = '$fecha', 
 									hora_registro = '$hora'
 							WHERE usuario = '$idE'",$conexion)or die(mysql_error());
-	
-
-	// $qry = mysql_query("SELECT * FROM usuarios WHERE contra = '$pass_actual' AND usuario = '$idE'");
-
-	// $res = mysql_num_rows($qry);
-
-	// if ($res > 0) {
-		
-	// }
-
-	//echo $cadena_actualizar;
-	// if ($_POST["action"] == "cambiarPass") {
-	// 	print_r($_POST);
-	// 	exit;
-	// }
 	
  ?>

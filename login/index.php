@@ -1,18 +1,5 @@
 <?php 
-	include '../conexion/conexion.php';
-	$consulta=mysql_query("SELECT 
-					   id_alumno,
-					   id_persona,
-					   id_carrera,
-					   no_control,
-					   activo,
-					   (SELECT personas.nombre FROM personas WHERE personas.id_persona=alumnos.id_persona) AS nAlumno,
-					   (SELECT personas.ap_paterno FROM personas WHERE personas.id_persona=alumnos.id_persona) AS pAlumno,
-					   (SELECT personas.ap_materno FROM personas WHERE personas.id_persona=alumnos.id_persona) AS mAlumno,
-					   (SELECT carreras.nombre FROM carreras WHERE carreras.id_carrera=alumnos.id_carrera) AS Carrera,
-					   fecha_registro
-					   FROM alumnos",$conexion) or die (mysql_error());
-	$row = mysql_fetch_array($consulta);
+	// include '../conexion/conexion.php';
 	
 ?>
 <!DOCTYPE html>
@@ -58,7 +45,7 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-md-2">
-							<button type="button" class="btn btn-default center-block" id="btnLeo1" onclick="verRegistros();">
+							<button type="button" class="btn btn-default center-block" id="btnReg" onclick="verRegistros();">
 								<i class="fa fa-users"></i>
 								Registros
 							</button>
@@ -85,6 +72,7 @@
 	<div class="container" style="display:none" id="registros">
 		<div class="row justify-content-md-center">
 			<div class="col-md-auto login-box borde sombra">
+				<button type="button" id="btnVolver" class="btn btn-login btn-flat" pull-left onclick="Volver();">Regresar al login </button>
 				<h3 class="text-center titulo">Registros de entrada y salida</h3>
 				<hr>
 				<form id="frmAcceso">
@@ -92,15 +80,14 @@
 						<div class="col-md-12">
 						
 						<div class="col-md-12">
-							<input type="text" id="matricula" class="form-control" value=" <?php echo $row[3] ?> ">
+							
 							<center>
 								<label for="" class="colorLetra">Matricula:</label>
 						          <div class="form-group has-feedback salto">
-						            <input type="text" id="noControl"  class="form-control">
-						            <!-- <span class="glyphicon glyphicon-lock form-control-feedback"></span> -->
+						            <input type="text" id="noControl"  class="form-control" onkeyup="llenar_matricula();" onchange="hablar();">
 						          </div>
 							</center>
-							<button type="button" class="btn btn-login  btn-flat  pull-right" id="btnValidar">Validar</button>
+							<!-- <button type="submit" class="btn btn-login  btn-flat  pull-right" id="btnValidar">Validar</button> -->
 						</div>
 						<div class="col-md-12" >
 							<input type="hidden" id="alumno" class="form-control" value=" <?php echo $row[5] ?> ">
@@ -116,7 +103,7 @@
 										
 										</div>
 										<div class="col-md-8">
-											<input type="hidden" id="regcarrera" class="form-control" value=" <?php echo $row[8] ?> ">
+											<input type="hidden" id="regcarrera" class="form-control">
 											<label for="">Carrera</label>
 											<input type="text" id="nomCarrera" class="form-control salto" disabled="">
 										</div>
@@ -125,14 +112,14 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-md-12">
-												<button type="submit" class="btn btn-login  btn-flat  pull-left" id="btnEntrada">
+											<!-- 	<button type="submit" class="btn btn-login  btn-flat  pull-left" id="btnEntrada">
 			              			<i class="fas fa-times"></i>
 			              			Entrar
 		              			</button>
 		              			<button type="submit" class="btn btn-login  btn-flat  pull-right" id="btnSalida" disabled>
 			              			<i class="fas fa-lock-open"></i>
 			              			Salir
-		              			</button>
+		              			</button> -->
 	              			</div>
 	            		</div><!-- /.col -->
 					</div>
@@ -196,6 +183,8 @@
 	<script src="../plugins/bootstrap-toggle-master/doc/script.js"></script>
     <script src="../plugins/bootstrap-toggle-master/js/bootstrap-toggle.js"></script>
     <!-- Funciones propias -->
+    <script src="../texto a audio/jquery-1.12.1.js"></script>
+    <script src="../texto a audio/responsivevoice.js"></script>
     <script src="funciones.js"></script>
     <script src="../js/menu.js"></script>
     <script src="../js/precarga.js"></script>
@@ -211,12 +200,34 @@
 
 	</script>
 <script>
-	llenar_matricula();
+
+function hablar(){
+ 		var textoAtraducir;
+
+ 		textoAtraducir=$("#persona").val();
+ 		if (textoAtraducir == '') {
+
+ 		} else {
+ 			responsiveVoice.speak(textoAtraducir + 'acaba de registrar una entrada',"Spanish Female");
+ 		}
+
+ 		 
+ 		// alert(textoAtraducir);
+ 	}
+</script>
+
 </script>
 <script>
 	function ver(){
 		$("#cuerpo").hide();
 		alertify.success("Ver nuevo modal");
+	}
+</script>
+
+<script>
+	function Volver(){
+		$("#registros").hide();
+		$("#cuerpo").fadeIn("slow");
 	}
 </script>
 </body>
