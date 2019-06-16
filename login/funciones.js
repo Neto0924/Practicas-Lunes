@@ -3,7 +3,7 @@ function entrando(){
 }
 
 function verRegistros(){
-    // llenar_matricula();
+    
     $("#cuerpo").hide();
     $("#registros").show();
     $("#cambiarContra").hide();
@@ -17,7 +17,7 @@ function verRegistros(){
 function cambioContra(){
 
     $("#cuerpo").hide();
-    $("#cambiarContra").fadeIn('low');
+    $("#cambiarContra").fadeIn('slow');
     alertify.warning("Debes de cambiar tu contraseña , ya que es tu primer ingreso al sistema",3);
     $("#vContra1").val('');
     $("#vContra2").val('');
@@ -222,6 +222,7 @@ function cancelar(){
 
 function llenar_matricula(){
 
+
     var matricula = $("#noControl").val();
 
     if (matricula != "") {
@@ -232,10 +233,14 @@ function llenar_matricula(){
         dateType : 'html',
         success : function(respuesta){
             console.log(respuesta);
+            
             if (respuesta != 0) {
-                 $("#persona").val(respuesta);
+                var array = eval(respuesta);
+                $("#persona").val(array[0]);
+                $("#nomCarrera").val(array[1]);
+                $("#imagen").attr('src', array[2]);     
             } else {
-
+                
             }
            
         },
@@ -248,11 +253,4 @@ function llenar_matricula(){
     }
 
     
-}
-function ValidarMat(){
-         var matricula = $("#noControl").val();
-
-         if (matricula != "") {
-            $.post("validarMatricula.php", {valorMat: matricula}, alertify.warning(mensaje))
-         }
 }

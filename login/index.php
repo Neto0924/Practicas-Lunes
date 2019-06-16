@@ -1,7 +1,3 @@
-<?php 
-	// include '../conexion/conexion.php';
-	
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,25 +80,26 @@
 							<center>
 								<label for="" class="colorLetra">Matricula:</label>
 						          <div class="form-group has-feedback salto">
-						            <input type="text" id="noControl"  class="form-control" onkeyup="llenar_matricula();" onchange="hablar();">
+						            <input type="text" id="noControl"  class="form-control"  onkeyup="llenar_matricula();">
 						          </div>
 							</center>
 							<!-- <button type="submit" class="btn btn-login  btn-flat  pull-right" id="btnValidar">Validar</button> -->
 						</div>
 						<div class="col-md-12" >
-							<input type="hidden" id="alumno" class="form-control" value=" <?php echo $row[5] ?> ">
+							<input type="hidden" id="alumno" class="form-control">
 							<center><label for="" class="colorLetra">Alumno:</label></center>
 					          <div class="form-group has-feedback " rowspan="2">
-					            <img  src="user.png"  style="width: 130px;height: 150px;" alt="" class="pull-left">
+					            <img id="imagen" style="width: 130px;height: 150px;" alt="" class="pull-left">
 					          </div>
 
 										<div class="col-md-8" >
 											<input type="text" class="form-control salto" id="persona" disabled>
+											
 										</div>
 										<div class="col-md-3">
 										
 										</div>
-										<div class="col-md-8">
+										<div class="col-md-8" id="texto">
 											<input type="hidden" id="regcarrera" class="form-control">
 											<label for="">Carrera</label>
 											<input type="text" id="nomCarrera" class="form-control salto" disabled="">
@@ -147,7 +144,7 @@
 						<div class="col-md-12">
 							<label for="" class="colorLetra">Verificar Contraseña:</label>
 					          <div class="form-group has-feedback salto">
-					            <input type="password" id="vContra2"  class="form-control " onKeyup="Validar();">
+					            <input type="password" id="vContra2"  class="form-control" onKeyup="Validar();">
 					            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 					          </div>
 						</div>
@@ -183,13 +180,14 @@
 	<script src="../plugins/bootstrap-toggle-master/doc/script.js"></script>
     <script src="../plugins/bootstrap-toggle-master/js/bootstrap-toggle.js"></script>
     <!-- Funciones propias -->
-    <script src="../texto a audio/jquery-1.12.1.js"></script>
-    <script src="../texto a audio/responsivevoice.js"></script>
     <script src="funciones.js"></script>
     <script src="../js/menu.js"></script>
     <script src="../js/precarga.js"></script>
+<!--     <script src="../texto_audio/jquery-1.12.1.js"></script>
+    <script src="../texto_audio/responsivevoice.js"></script> -->
+    <!-- <script src="val/verificar.js"></script> -->
 
-		<script>
+	<script>
 		window.onload = function() {
 			$("#cuerpo").fadeIn("slow");
 			$("#username").focus();
@@ -199,24 +197,24 @@
 		$('#chkContra').val('no');
 
 	</script>
-<script>
+<!-- <script>
 
-function hablar(){
- 		var textoAtraducir;
+	function hablar(){
+	 		var textoAtraducir;
 
- 		textoAtraducir=$("#persona").val();
- 		if (textoAtraducir == '') {
+	 		textoAtraducir=$("#persona").val();
+	 		if (textoAtraducir == '') {
 
- 		} else {
- 			responsiveVoice.speak(textoAtraducir + 'acaba de registrar una entrada',"Spanish Female");
- 		}
+	 		} else {
+	 			responsiveVoice.speak(textoAtraducir + ' acaba de registrar una entrada',"Spanish Female");
+	 		}
 
- 		 
- 		// alert(textoAtraducir);
- 	}
-</script>
+	 		 
+	 		// alert(textoAtraducir);
+	 	}
+</script> -->
 
-</script>
+
 <script>
 	function ver(){
 		$("#cuerpo").hide();
@@ -230,5 +228,6 @@ function hablar(){
 		$("#cuerpo").fadeIn("slow");
 	}
 </script>
+
 </body>
 </html>

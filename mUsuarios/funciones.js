@@ -15,7 +15,26 @@ function llenar_lista(){
         }
     });	
 }
+function imprimir(){
 
+    var titular = "Lista de Usuarios";
+    var mensaje = "¿Deseas generar un archivo con PDF oon la lista de usuarios activos";
+    // var link    = "pdfListaPersona.php?id="+idPersona+"&datos="+datos;
+    var link    = "pdf/index.php?";
+
+    alertify.confirm('alert').set({transition:'zoom',message: 'Transition effect: zoom'}).show();
+    alertify.confirm(
+        titular, 
+        mensaje, 
+        function(){ 
+            window.open(link,'_blank');
+            }, 
+        function(){ 
+                alertify.error('Cancelar') ; 
+                // console.log('cancelado')
+              }
+    ).set('labels',{ok:'Generar PDF',cancel:'Cancelar'}); 
+  }
 function ver_alta(){
     // preCarga(800,4);
     $("#lista").slideUp('low');

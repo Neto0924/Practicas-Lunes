@@ -22,7 +22,7 @@
 				</li>
 				<li class="list-unstyled">
 					<p  class="user fondo">
-						Pablo Adrian Perez Briseño
+						Ernesto Alejandro Mejorado Herrera
 					</p>
 				</li>
 			</ul>

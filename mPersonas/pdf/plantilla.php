@@ -9,7 +9,7 @@
 		function header()
 		{
 			$this->Cell(30);
-			$this->Image('images/encabezado.jpg', 20, 10, 30);
+			$this->Image('images/logotipo.png', 20, 10, 30);
 			$this->SetFont('Arial', 'B', 15);
 			$this->Cell(30);
 			$this->SetX(100);
