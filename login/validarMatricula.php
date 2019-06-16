@@ -36,11 +36,11 @@
 		}
 
 	
-			
+				$ide = $row[0];
 				$nombre = $row[1];
 				$carrera = $row[2];
 				//Output
-				$mensaje = array($nombre,$carrera,$imagen);  
+				$mensaje = array($ide,$nombre,$carrera,$imagen);  
 				 
 
 							

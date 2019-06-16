@@ -222,7 +222,6 @@ function cancelar(){
 
 function llenar_matricula(){
 
-
     var matricula = $("#noControl").val();
 
     if (matricula != "") {
@@ -236,11 +235,13 @@ function llenar_matricula(){
             
             if (respuesta != 0) {
                 var array = eval(respuesta);
-                $("#persona").val(array[0]);
-                $("#nomCarrera").val(array[1]);
-                $("#imagen").attr('src', array[2]);     
+                 $("#alumno").val(array[0])
+                 $("#persona").val(array[1]);
+                 $("#nomCarrera").val(array[2]);
+                $("#imagen").attr('src', array[3]);
+                       Altaregistro();
             } else {
-                
+                alertify.warning("La matricula no existe");
             }
            
         },
@@ -250,7 +251,30 @@ function llenar_matricula(){
     });
     } else {
         alertify.warning("Escribe una matricula");
-    }
+    }    
+}
+function Altaregistro(){
+	var noControl = $("#noControl").val();
+	var ide = $("#alumno").val();
 
-    
+	 $.ajax({
+                    url:"AltaRegistro.php",
+                    type:"POST",
+                    dateType:"html",
+                    data:{
+                    		'ide' : ide,
+                            'noControl': noControl,                            
+                            
+                         },
+                    success:function(respuesta){
+                        console.log(respuesta);
+                        alertify.set('notifier','position', 'bottom-right');
+                        alertify.success('Se ha registrado una entrada');
+                        // entrando();
+                    },
+                    error:function(xhr,status){
+                        alert(xhr);
+                    },
+                });
+
 }

@@ -7,17 +7,17 @@ mysql_query("SET NAMES utf8");
 
 // Consulta a la base de datos
 $consulta=mysql_query("SELECT 
-alumnos.id_alumno,
-alumnos.id_carrera,
-alumnos.id_persona,
-alumnos.no_control,
-CONCAT(personas.ap_paterno,' ',personas.ap_materno,' ',personas.nombre) AS Alumno,
-(SELECT nombre FROM carreras WHERE carreras.id_carrera = alumnos.id_carrera) AS Carrera,
-alumnos.activo
-FROM 
-alumnos
-INNER JOIN personas ON personas.id_persona = alumnos.id_persona
-ORDER BY alumnos.id_alumno DESC",$conexion) or die (mysql_error());
+id_registro,
+(SELECT 
+	CONCAT(p.nombre,' ',p.ap_paterno,' ',ap_materno)
+FROM alumnos
+INNER JOIN personas p ON p.id_persona = alumnos.id_persona WHERE alumnos.id_alumno  = registros.id_alumno) AS Alumno,
+matricula,
+fecha_ingreso,
+hora_ingreso,
+activo
+FROM  registros
+WHERE registros.activo = 1",$conexion) or die (mysql_error());
 // $row=mysql_fetch_row($consulta)
  ?>
 				            <div class="table-responsive">
@@ -26,10 +26,10 @@ ORDER BY alumnos.id_alumno DESC",$conexion) or die (mysql_error());
 				                    <thead align="center">
 				                      <tr class="info" >
 				                        <th>#</th>
-				                        <th>Nombre</th>
+				                        <th>Alumno</th>
 				                        <th>Matricula</th>
-				                        <th>Carrera</th>
-				                        <th>Editar</th>
+				                        <th>Fecha ingreso</th>
+				                        <th>Hora ingreso</th>
 				                        <th>Estatus</th>
 				                      </tr>
 				                    </thead>
@@ -38,14 +38,12 @@ ORDER BY alumnos.id_alumno DESC",$conexion) or die (mysql_error());
 				                    <?php 
 				                    $n=1;
 				                    while ($row=mysql_fetch_row($consulta)) {
-										$idAlumno   = $row[0];
-										$idCarrera  = $row[1];
-										$nomPersona = $row[2];
-										$noControl  = $row[3];
-										$nomAlumno  = $row[4];
-										$nomCarrera = $row[5];
-										$activo  = 		$row[6];			
-										$sexo=($sexo=='M')?'<i class="fas fa-male fa-lg"></i>':'<i class="fas fa-female fa-lg"></i>';
+										$idRegistro   = $row[0];
+										$nomAlumno  = $row[1];
+										$matricula = $row[2];
+										$fecha_ingreso  = $row[3];
+										$hora_ingreso  = $row[4];
+										$activo = $row[5];
 										$checado=($activo==1)?'checked':'';		
 										$desabilitar=($activo==0)?'disabled':'';
 										$claseDesabilita=($activo==0)?'desabilita':'';
@@ -63,12 +61,17 @@ ORDER BY alumnos.id_alumno DESC",$conexion) or die (mysql_error());
 				                        </td>
 				                        <td>
 																<p id="<?php echo "tNoControl".$n; ?>" class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $noControl; ?>
+				                          	<?php echo $matricula; ?>
 				                          </p>
 				                        </td>
 				                        <td>
 																<p id="<?php echo "tCarrera".$n; ?>"  class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $nomCarrera; ?>
+				                          	<?php echo $fecha_ingreso; ?>
+				                          </p>
+				                        </td>
+				                        <td>
+																<p id="<?php echo "tHraIngreso".$n; ?>"  class="<?php echo $claseDesabilita; ?>">
+				                          	<?php echo $hora_ingreso; ?>
 				                          </p>
 				                        </td>
 				                       
