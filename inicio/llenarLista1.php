@@ -1,6 +1,6 @@
 <?php 
 // Conexion a la base de datos
-include '../conexion/conexion.php';
+include'../conexion/conexion.php';
 
 // Codificacion de lenguaje
 mysql_query("SET NAMES utf8");
@@ -18,7 +18,7 @@ hora_ingreso,
 activo
 FROM  registros
 WHERE registros.activo = 1",$conexion) or die (mysql_error());
-//$row=mysql_fetch_row($consulta)
+// $row=mysql_fetch_row($consulta)
  ?>
 				            <div class="table-responsive">
 				                <table id="example1" class="table table-responsive table-condensed table-bordered table-striped">
@@ -26,11 +26,10 @@ WHERE registros.activo = 1",$conexion) or die (mysql_error());
 				                    <thead align="center">
 				                      <tr class="info" >
 				                        <th>#</th>
-				                        <th>Nombre</th>
+				                        <th>Alumno</th>
 				                        <th>Matricula</th>
-				                        <th>Fecha Registro</th>
-				                        <th>Hora</th>
-				                        <th>Editar</th>
+				                        <th>Fecha ingreso</th>
+				                        <th>Hora ingreso</th>
 				                        <th>Estatus</th>
 				                      </tr>
 				                    </thead>
@@ -39,17 +38,15 @@ WHERE registros.activo = 1",$conexion) or die (mysql_error());
 				                    <?php 
 				                    $n=1;
 				                    while ($row=mysql_fetch_row($consulta)) {
-															$idAlumno          = $row[0];
-															$nomCarrera        = $row[3];
-															$activo            = $row[5];
-															$nomAlumnoCompleto = $row[1];
-															$idPersona         = $row[1];
-															$idCarrera         = $row[2]; 
-															$noControl         = $row[2];
-															$registro          = $row[4];
-															$checado           = ($activo == 1)?'checked' : '';		
-															$desabilitar       = ($activo == 0)?'disabled': '';
-															$claseDesabilita   = ($activo == 0)?'desabilita':'';
+										$idRegistro   = $row[0];
+										$nomAlumno  = $row[1];
+										$matricula = $row[2];
+										$fecha_ingreso  = $row[3];
+										$hora_ingreso  = $row[4];
+										$activo = $row[5];
+										$checado=($activo==1)?'checked':'';		
+										$desabilitar=($activo==0)?'disabled':'';
+										$claseDesabilita=($activo==0)?'desabilita':'';
 															?>
 				                      <tr>
 				                        <td >
@@ -59,31 +56,32 @@ WHERE registros.activo = 1",$conexion) or die (mysql_error());
 				                        </td>
 				                        <td>
 																<p id="<?php echo "tAlumno".$n; ?>" class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $nomAlumnoCompleto; ?>
+				                          	<?php echo $nomAlumno; ?>
 				                          </p>
 				                        </td>
 				                        <td>
 																<p id="<?php echo "tNoControl".$n; ?>" class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $noControl; ?>
+				                          	<?php echo $matricula; ?>
 				                          </p>
 				                        </td>
 				                        <td>
 																<p id="<?php echo "tCarrera".$n; ?>"  class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $nomCarrera; ?>
+				                          	<?php echo $fecha_ingreso; ?>
 				                          </p>
 				                        </td>
-				                       <td>
-																<p id="<?php echo "tCarrera".$n; ?>"  class="<?php echo $claseDesabilita; ?>">
-				                          	<?php echo $registro; ?>
+				                        <td>
+																<p id="<?php echo "tHraIngreso".$n; ?>"  class="<?php echo $claseDesabilita; ?>">
+				                          	<?php echo $hora_ingreso; ?>
 				                          </p>
 				                        </td>
+				                       
 				                        <td>
 				                          <button id="<?php echo "boton".$n; ?>" <?php echo $desabilitar ?>  type="button" class="btn btn-login btn-sm" 
 				                          onclick="abrirModalEditar(
-																								'<?php echo $idAlumno ?>',
-				                          							'<?php echo $idPersona ?>',
+				                          							'<?php echo $nomPersona ?>',
+				                          							'<?php echo $noControl ?>',
 				                          							'<?php echo $idCarrera ?>',
-				                          							'<?php echo $noControl ?>'
+																								'<?php echo $idAlumno ?>'
 				                          							);">
 				                          	<i class="far fa-edit"></i>
 				                          </button>
@@ -104,8 +102,7 @@ WHERE registros.activo = 1",$conexion) or die (mysql_error());
 										<th>#</th>
 				                        <th>Nombre</th>
 				                        <th>Matricula</th>
-				                        <th>Fecha</th>
-				                        <th>Hora</th>
+				                        <th>Carrera</th>
 				                        <th>Editar</th>
 				                        <th>Estatus</th>
 				                      </tr>
@@ -142,43 +139,19 @@ WHERE registros.activo = 1",$conexion) or die (mysql_error());
                                 text: 'Registros',
                                 className: 'btn btn-default'
                             },
+                          {
+                              extend: 'excel',
+                              text: 'Exportar a Excel',
+                              className: 'btn btn-default',
+                              title:'Bajas-Estaditicas',
+                              exportOptions: {
+                                  columns: ':visible'
+                              }
+                          },
                          {
-                              text: 'Pantalla 1',
+                              text: 'Nuevo Alumno',
                               action: function (  ) {
-                                      ver_lista1();
-                                      // llenar_carrera();
-                                      // llenar_persona();
-
-                              },
-                              counter: 1
-                          },
-                          {
-                              text: 'Pantalla 2',
-                              action: function (  ) {
-                                      ver_lista2();
-                                      // llenar_carrera();
-                                      // llenar_persona();
-
-                              },
-                              counter: 1
-                          },
-                          {
-                              text: 'Pantalla 3',
-                              action: function (  ) {
-                                      ver_lista3();
-                                      // llenar_carrera();
-                                      // llenar_persona();
-
-                              },
-                              counter: 1
-                          },
-                          {
-                              text: 'Pantalla 4',
-                              action: function (  ) {
-                                      ver_lista4();
-                                      // llenar_carrera();
-                                      // llenar_persona();
-
+                                      ver_alta();
                               },
                               counter: 1
                           },

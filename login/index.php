@@ -41,11 +41,11 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-md-2">
-							<button type="button" class="btn btn-default center-block" id="btnReg" onclick="verRegistros();">
-								<i class="fa fa-users"></i>
-								Registros
-							</button>
-		          </div>	
+								<button type="button" class="btn btn-default center-block" id="btnReg" onclick="verRegistros();">
+									<i class="fa fa-users"></i>
+									Registros
+								</button>
+			          		</div>	
 							<div class="col-md-8">
 								<center>
 									<input id="chkContra"  onchange='evaluarCheck(this.value)' data-on="Si" data-off="No" type="checkbox" checked data-toggle="toggle" data-size="mini" value='no'><label class="colorLetra"> &nbsp; Cambiar Contraseña</label>	
@@ -58,72 +58,14 @@
 		              			</button>
 		              		</div>
 	              			
-	            	 </div><!-- /.col -->
+	            	 	</div><!-- /.col -->
 					</div>
 				</form>
 			</div>			
 		</div>
 	</div>
 
-	<div class="container" style="display:none" id="registros">
-		<div class="row justify-content-md-center">
-			<div class="col-md-auto login-box borde sombra">
-				<button type="button" id="btnVolver" class="btn btn-login btn-flat" pull-left onclick="Volver();">Regresar al login </button>
-				<h3 class="text-center titulo">Registros de entrada y salida</h3>
-				<hr>
-				<form id="frmAcceso">
-					<div class="form-row">
-						<div class="col-md-12">
-						
-						<div class="col-md-12">
-							
-							<center>
-								<label for="" class="colorLetra">Matricula:</label>
-						          <div class="form-group has-feedback salto">
-						            <input type="text" id="noControl"  class="form-control"  onkeyup="llenar_matricula();">
-						          </div>
-							</center>
-							<!-- <button type="submit" class="btn btn-login  btn-flat  pull-right" id="btnValidar">Validar</button> -->
-						</div>
-						<div class="col-md-12" >
-							<input type="hidden" id="alumno" class="form-control">
-							<center><label for="" class="colorLetra">Alumno:</label></center>
-					          <div class="form-group has-feedback " rowspan="2">
-					            <img id="imagen" style="width: 130px;height: 150px;" alt="" class="pull-left">
-					          </div>
-
-										<div class="col-md-8" >
-											<input type="text" class="form-control salto" id="persona" disabled>
-											
-										</div>
-										<div class="col-md-3">
-										
-										</div>
-										<div class="col-md-8" id="texto">
-											<input type="hidden" id="regcarrera" class="form-control">
-											<label for="">Carrera</label>
-											<input type="text" id="nomCarrera" class="form-control salto" disabled="">
-										</div>
-						</div>
-					</div>
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-md-12">
-											<!-- 	<button type="submit" class="btn btn-login  btn-flat  pull-left" id="btnEntrada">
-			              			<i class="fas fa-times"></i>
-			              			Entrar
-		              			</button>
-		              			<button type="submit" class="btn btn-login  btn-flat  pull-right" id="btnSalida" disabled>
-			              			<i class="fas fa-lock-open"></i>
-			              			Salir
-		              			</button> -->
-	              			</div>
-	            		</div><!-- /.col -->
-					</div>
-				</form>
-			</div>			
-		</div>
-	</div>
+	
 
 	<div class="container" style="display:none" id="cambiarContra">
 		<div class="row justify-content-md-center">
@@ -134,6 +76,7 @@
 					<div class="form-row">
 						<div class="col-md-12">
 							<input type="hidden" id="usuario" class="form-control">
+						</div>
 						<div class="col-md-12">
 							<label for="" class="colorLetra">Contraseña:</label>
 					          <div class="form-group has-feedback salto">
@@ -152,7 +95,7 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-md-12">
-												<button type="button" class="btn btn-login  btn-flat  pull-left" id="btnCancelar"  onclick="cancelar()">
+								<button type="button" class="btn btn-login  btn-flat  pull-left" id="btnCancelar"  onclick="cancelar()">
 			              			<i class="fas fa-times"></i>
 			              			Cancelar
 		              			</button>
@@ -160,15 +103,63 @@
 			              			<i class="fas fa-lock-open"></i>
 			              			Actualizar
 		              			</button>
-	              			</div>
-	            		</div><!-- /.col -->
-					</div>
+	            			</div><!-- /.col -->
+						</div>
+					</div>	
 				</form>
 			</div>			
 		</div>
 	</div>
 
-	
+	<div class="container" style="display:none" id="registros">
+		<div class="row justify-content-md-center">
+			<div class="col-md-auto login-box borde sombra">
+				<button type="button" id="btnVolver" class="btn btn-login btn-flat" pull-left onclick="Volver();">Regresar al login </button>
+				<h3 class="text-center titulo">Registros de entrada y salida</h3>
+				<hr>
+				<form id="frmAcceso">
+						<div class="form-row">
+							<div class="col-md-12">
+								
+							</div>
+							
+							<div class="col-md-12">
+								
+								<center>
+									<label for="" class="colorLetra">Matricula:</label>
+							          <div class="form-group has-feedback salto">
+							            <input type="text" id="noControl"  class="form-control"  onkeyup="llenar_matricula();">
+							          </div>
+								</center>
+							</div>
+						</div>
+					<div class="container-fluid">
+							<div class="row">
+								<div class="col-md-12" >
+								<input type="hidden" id="alumno" class="form-control">
+								<center><label for="" class="colorLetra">Alumno:</label></center>
+						          <div class="form-group has-feedback " rowspan="2">
+						            <img id="imagen" style="width: 130px;height: 150px;" alt="" class="pull-left">
+						          </div>
+											<div class="col-md-8" >
+												<input type="text" class="form-control salto" id="persona" disabled>
+												
+											</div>
+											<div class="col-md-3">
+											
+											</div>
+											<div class="col-md-8" id="texto">
+												<input type="hidden" id="regcarrera" class="form-control">
+												<label for="">Carrera</label>
+												<input type="text" id="nomCarrera" class="form-control salto" disabled="">
+											</div>
+								</div>
+							</div>
+					</div>
+				</form>
+			</div>			
+		</div>
+	</div>
 
 	<script src="../plugins/jQuery/jQuery-2.1.4.min.js"></script>
 	<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>

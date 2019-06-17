@@ -16,9 +16,27 @@ function llenar_lista(){
     });	
 }
 
-function ver_alta(){
+function ver_lista1(){
     preCarga(800,4);
-    $("#lista").slideUp('low');
+    $("#lista2").slideUp('low');
+    $("#alta").slideDown('low');
+    $("#nombre").focus();
+}
+function ver_lista2(){
+    preCarga(800,4);
+    $("#lista2").slideUp('low');
+    $("#alta").slideDown('low');
+    $("#nombre").focus();
+}
+function ver_lista3(){
+    preCarga(800,4);
+    $("#lista3").slideUp('low');
+    $("#alta").slideDown('low');
+    $("#nombre").focus();
+}
+function ver_lista4(){
+    preCarga(800,4);
+    $("#lista4").slideUp('low');
     $("#alta").slideDown('low');
     $("#nombre").focus();
 }

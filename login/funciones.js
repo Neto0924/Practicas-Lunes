@@ -16,8 +16,9 @@ function verRegistros(){
 
 function cambioContra(){
 
-    $("#cuerpo").hide();
     $("#cambiarContra").fadeIn('slow');
+    $("#cuerpo").hide();
+    $("#registros").hide();
     alertify.warning("Debes de cambiar tu contraseña , ya que es tu primer ingreso al sistema",3);
     $("#vContra1").val('');
     $("#vContra2").val('');
